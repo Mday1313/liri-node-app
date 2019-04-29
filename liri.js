@@ -2,58 +2,93 @@
 // code to read and set any environment variables with the dotenv package
 require("dotenv").config();
 
-// code required to import the `keys.js` file and store it in a variable
+// ------------------------------Require NPMs----------------------------------------------
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
 var moment = require("moment");
 var fs = require("fs");
 
+// -------------------------------Global variables in use-----------------------------------
 var dataStr = process.argv;
-// Global variables in use
 var action = dataStr[2];
 // split and join input to isolate all info after action
 var input = dataStr.slice(3);
 var result = "";
 
+// ----------------------------------Main Functions-----------------------------------------
+// Adds info to log.txt
 function appendText() {
-  fs.appendFile("log.txt", '\n' + result, function(err) {
+  fs.appendFile("log.txt", '\n' + result + '\n' + "------------------------------------------------------------", function(err) {
 
-    // If an error was experienced we will log it.
     if (err) {
       console.log(err);
+    } else {
+     
     }
-  
-    // If no error is experienced, we'll log the phrase "Content Added" to our node console.
-    else {
-      console.log("Content Added!");
-    }
-  
   });
 }
 
+// Read text from random.txt plug into appropiate function through a switch statement
+function readRandom() {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+
+    if (error) {
+      return console.log(error);
+    }
+
+    var dataArr = data.split(",");
+    action = dataArr[0];
+    input = dataArr[1];
+    
+    switch(action) {
+      case "spotify-this-song":
+      giveMeMusic(input);
+        break;
+      case "concert-this":
+        findConcert(input);
+        break;
+      case "movie-this":
+        entertainMe(input);
+        break;
+      default:
+        console.log("I don't know what you want from me!");
+        break;
+    }
+  });
+}
+// Spotify function
 function giveMeMusic() {
 // access your keys information
 var spotify = new Spotify(keys.spotify);
-
+// Default search if no search entered
 if (input == "") {
     input = "The Sign, Ace of Base";
 }
+// GET info
 spotify.search({ type: 'track', query: input }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
-var info = data.tracks.items[0];
-var album = info.album.name;
-var artist = info.artists[0].name;
-result = '\n' + "Song name: " + input + '\n' + "Artist: " + artist + '\n' + "Album: " + album + '\n' + "Link: " + info.preview_url;
+
+var info = data.tracks.items;
+// Record info for all 20 results
+for (var i = 0; i < info.length; i++) {
+  console.log(i);
+
+var album = info[i].album.name;
+
+var artist = info[i].artists[0].name;
+result = '\n' + "Song name: " + info[i].name + '\n' + "Artist: " + artist + '\n' + "Album: " + album + '\n' + "Link: " + info[i].preview_url;
 console.log(result);
-appendText(result);
-
-});
-
+console.log("------------------");
+appendText();
 }
 
+
+});
+}
+// Bands-in-Town Function
 function findConcert() {
     var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
     axios.get(queryUrl).then(
@@ -62,14 +97,16 @@ function findConcert() {
             result = '\n' + "Venue name: "+ info.venue.name + '\n' + "Venue location: "
             + info.venue.city + ", " + info.venue.country + '\n' + 
             "Date: " + moment(info.datetime).format("MM DD YYYY")
-        //    console.log(result.venue );
+      
            console.log(result);
            appendText(result);
         }
       );
 }
 
+// OMDB Function
 function entertainMe() {
+  // Default search if no search entered
     if (input == "") {
         input = "Mr. Nobody";
     }
@@ -83,7 +120,7 @@ function entertainMe() {
         }
       );
 }
-
+// Determines which function is called based on input
 switch(action) {
     case "spotify-this-song":
     giveMeMusic();
@@ -95,7 +132,7 @@ switch(action) {
       entertainMe();
       break;
       case "do-what-it-says":
-      // code block
+      readRandom();
       break;
     default:
       // code block
