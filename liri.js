@@ -13,7 +13,8 @@ var fs = require("fs");
 var dataStr = process.argv;
 var action = dataStr[2];
 // split and join input to isolate all info after action
-var input = dataStr.slice(3);
+var input = dataStr.slice(3).join(" ");
+
 var result = "";
 
 // ----------------------------------Main Functions-----------------------------------------
@@ -93,13 +94,19 @@ function findConcert() {
     var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
     axios.get(queryUrl).then(
         function(response) {
-            var info = response.data[0];
-            result = '\n' + "Venue name: "+ info.venue.name + '\n' + "Venue location: "
-            + info.venue.city + ", " + info.venue.country + '\n' + 
-            "Date: " + moment(info.datetime).format("MM DD YYYY")
+            
+            var info = response.data;
+
+            for (var i = 0; i < info.length; i++) {
+              console.log(i);
+            result = '\n' + "Venue name: "+ info[i].venue.name + '\n' + "Venue location: "
+            + info[i].venue.city + ", " + info[i].venue.region + ", " + info[i].venue.country + '\n' + 
+            "Date: " + moment(info[i].datetime).format("MM DD YYYY")
       
            console.log(result);
+           console.log("------------------");
            appendText(result);
+            }
         }
       );
 }
