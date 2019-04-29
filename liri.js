@@ -30,10 +30,7 @@ spotify.search({ type: 'track', query: input }, function(err, data) {
 var info = data.tracks.items[0];
 var album = info.album.name;
 var artist = info.artists[0].name;
-console.log("Song name: " + input);
-console.log("Artist: " + artist); 
-console.log("Album: " + album);
-console.log("Link: " + info.preview_url);
+console.log('\n' + "Song name: " + input + '\n' + "Artist: " + artist + '\n' + "Album: " + album + '\n' + "Link: " + info.preview_url);
 
 
 });
@@ -45,7 +42,7 @@ function findConcert() {
         function(response) {
             var result = response.data[0];
         //    console.log(result.venue );
-           console.log("Venue name: "+ result.venue.name + '\n' + "Venue location: "
+           console.log('\n' + "Venue name: "+ result.venue.name + '\n' + "Venue location: "
              + result.venue.city + ", " + result.venue.country + '\n' + 
              "Date: " + moment(result.datetime).format("MM DD YYYY"));
              
@@ -62,7 +59,7 @@ function entertainMe() {
         function(response) {
            var result = response.data;
 
-          console.log( "Title: " + result.Title + '\n' + "The movie was released: " + result.Year + '\n' + "IMDB Rating: " + result.imdbRating + '\n' + "Rotten Tomato Rating: " + result.Ratings[1].Value + '\n' + "Country Produced: " + result.Country);
+          console.log( '\n' + "Title: " + result.Title + '\n' + "The movie was released: " + result.Year + '\n' + "IMDB Rating: " + result.imdbRating + '\n' + "Rotten Tomato Rating: " + result.Ratings[1].Value + '\n' + "Country Produced: " + result.Country + '\n' + "Language: " + result.Language + '\n' + "Plot: " + '\n' + "  " + result.Plot + '\n' + "Actors: " + result.Actors);
         }
       );
 }
