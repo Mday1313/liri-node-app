@@ -7,14 +7,30 @@ var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
 var moment = require("moment");
+var fs = require("fs");
 
 var dataStr = process.argv;
 // Global variables in use
 var action = dataStr[2];
 // split and join input to isolate all info after action
 var input = dataStr.slice(3);
+var result = "";
 
+function appendText() {
+  fs.appendFile("log.txt", '\n' + result, function(err) {
 
+    // If an error was experienced we will log it.
+    if (err) {
+      console.log(err);
+    }
+  
+    // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+    else {
+      console.log("Content Added!");
+    }
+  
+  });
+}
 
 function giveMeMusic() {
 // access your keys information
@@ -30,22 +46,25 @@ spotify.search({ type: 'track', query: input }, function(err, data) {
 var info = data.tracks.items[0];
 var album = info.album.name;
 var artist = info.artists[0].name;
-console.log('\n' + "Song name: " + input + '\n' + "Artist: " + artist + '\n' + "Album: " + album + '\n' + "Link: " + info.preview_url);
-
+result = '\n' + "Song name: " + input + '\n' + "Artist: " + artist + '\n' + "Album: " + album + '\n' + "Link: " + info.preview_url;
+console.log(result);
+appendText(result);
 
 });
+
 }
 
 function findConcert() {
     var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
     axios.get(queryUrl).then(
         function(response) {
-            var result = response.data[0];
+            var info = response.data[0];
+            result = '\n' + "Venue name: "+ info.venue.name + '\n' + "Venue location: "
+            + info.venue.city + ", " + info.venue.country + '\n' + 
+            "Date: " + moment(info.datetime).format("MM DD YYYY")
         //    console.log(result.venue );
-           console.log('\n' + "Venue name: "+ result.venue.name + '\n' + "Venue location: "
-             + result.venue.city + ", " + result.venue.country + '\n' + 
-             "Date: " + moment(result.datetime).format("MM DD YYYY"));
-             
+           console.log(result);
+           appendText(result);
         }
       );
 }
@@ -57,9 +76,10 @@ function entertainMe() {
     var queryUrl = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl).then(
         function(response) {
-           var result = response.data;
-
-          console.log( '\n' + "Title: " + result.Title + '\n' + "The movie was released: " + result.Year + '\n' + "IMDB Rating: " + result.imdbRating + '\n' + "Rotten Tomato Rating: " + result.Ratings[1].Value + '\n' + "Country Produced: " + result.Country + '\n' + "Language: " + result.Language + '\n' + "Plot: " + '\n' + "  " + result.Plot + '\n' + "Actors: " + result.Actors);
+           var info = response.data;
+          result =  '\n' + "Title: " + info.Title + '\n' + "The movie was released: " + info.Year + '\n' + "IMDB Rating: " + info.imdbRating + '\n' + "Rotten Tomato Rating: " + info.Ratings[1].Value + '\n' + "Country Produced: " + info.Country + '\n' + "Language: " + info.Language + '\n' + "Plot: " + '\n' + "  " + info.Plot + '\n' + "Actors: " + info.Actors
+          console.log(result);
+          appendText(result);
         }
       );
 }
