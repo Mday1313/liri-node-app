@@ -1,14 +1,25 @@
 
- Jurassic Park
+return of the jedi
 
-
-Title: Jurassic Park
-The movie was released: 1993
-IMDB Rating: 8.1
-Rotten Tomato Rating: 91%
+Title: Star Wars: Episode VI - Return of the Jedi
+The movie was released: 1983
+IMDB Rating: 8.3
+Rotten Tomato Rating: 81%
 Country Produced: USA
-Language: English, Spanish
+Language: English
 Plot: 
-  During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.
-Actors: Sam Neill, Laura Dern, Jeff Goldblum, Richard Attenborough
+  After a daring mission to rescue Han Solo from Jabba the Hutt, the rebels dispatch to Endor to destroy a more powerful Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's trap.
+Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams
+------------------------------------------------------------
+jurassic world
+
+Title: Jurassic World
+The movie was released: 2015
+IMDB Rating: 7.0
+Rotten Tomato Rating: 72%
+Country Produced: USA
+Language: English
+Plot: 
+  A new theme park, built on the original site of Jurassic Park, creates a genetically modified hybrid dinosaur, the Indominus Rex, which escapes containment and goes on a killing spree.
+Actors: Chris Pratt, Bryce Dallas Howard, Irrfan Khan, Vincent D'Onofrio
 ------------------------------------------------------------

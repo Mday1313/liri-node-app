@@ -62,10 +62,12 @@ function giveMeMusic() {
     }
 
     var info = data.tracks.items;
+    // console.log(info);
    
     // Record info for 10 results
     for (var i = 0; i < searchAmt; i++) {
       console.log('\n' + parseInt(i + 1));
+
       
       result = '\n' + "Song name: " + info[i].name + '\n' + "Artist: " + info[i].artists[0].name + '\n' + "Album: " + info[i].album.name + '\n' + "Link: " + info[i].preview_url;
       console.log(result);

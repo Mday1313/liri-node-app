@@ -10,5 +10,6 @@ This is a Command Line App designed to get information based on commands entered
 
     `do-what-it-says`
 
-[link to video walk through](add.link)  
+[link to video walk through](https://drive.google.com/file/d/1K_B0NJNOVKOxz3P-CRezKjB86ubkOXzn/view)  
+
 [Github](https://github.com/Mday1313/liri-node-app)
