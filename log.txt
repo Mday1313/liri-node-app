@@ -143,3 +143,65 @@ Plot:
   During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.
 Actors: Sam Neill, Laura Dern, Jeff Goldblum, Richard Attenborough
 ------------------------------------------------------------
+return of the jedi
+
+Title: Star Wars: Episode VI - Return of the Jedi
+The movie was released: 1983
+IMDB Rating: 8.3
+Rotten Tomato Rating: 81%
+Country Produced: USA
+Language: English
+Plot: 
+  After a daring mission to rescue Han Solo from Jabba the Hutt, the rebels dispatch to Endor to destroy a more powerful Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's trap.
+Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams
+------------------------------------------------------------
+foo fighters
+Venue name: Epicenter Festival
+Venue location: Rockingham, NC, United States
+Date: 05 12 2019
+------------------------------------------------------------
+foo fighters
+Venue name: The Fillmore New Orleans
+Venue location: New Orleans, LA, United States
+Date: 05 15 2019
+------------------------------------------------------------
+foo fighters
+Venue name: The Fillmore New Orleans
+Venue location: New Orleans, LA, United States
+Date: 05 16 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Pula Arena
+Venue location: Pula, , Croatia
+Date: 06 18 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Pula Arena
+Venue location: Pula, , Croatia
+Date: 06 19 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Southside Festival
+Venue location: Neuhausen Ob Eck, , Germany
+Date: 06 21 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Hurricane Festival
+Venue location: Scheeßel, , Germany
+Date: 06 23 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Faengslet
+Venue location: Horsens, , Denmark
+Date: 06 25 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Koengen Fortress
+Venue location: Bergen, , Norway
+Date: 06 27 2019
+------------------------------------------------------------
+foo fighters
+Venue name: Sonic Temple Festival (May 17-19)
+Venue location: Columbus, OH, United States
+Date: 05 19 2019
+------------------------------------------------------------
