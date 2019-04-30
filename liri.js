@@ -14,7 +14,7 @@ var dataStr = process.argv;
 var action = dataStr[2];
 // split and join input to isolate all info after action
 var input = dataStr.slice(3).join(" ");
-
+// Set globally, changed and reassigned locally
 var result = "";
 
 // ----------------------------------Main Functions----------------------------------
@@ -25,9 +25,7 @@ function appendText() {
 
     if (err) {
       console.log(err);
-    } else {
-
-    }
+    } 
   });
 }
 
@@ -38,25 +36,12 @@ function readRandom() {
     if (error) {
       return console.log(error);
     }
-
+    // Feed info from random into global function for main switch
     var dataArr = data.split(",");
     action = dataArr[0];
     input = dataArr[1];
 
-    switch (action) {
-      case "spotify-this-song":
-        giveMeMusic(input);
-        break;
-      case "concert-this":
-        findConcert(input);
-        break;
-      case "movie-this":
-        entertainMe(input);
-        break;
-      default:
-        console.log("I don't know what you want from me!");
-        break;
-    }
+    mainSwitch(input);
   });
 }
 // Spotify function
@@ -64,8 +49,11 @@ function giveMeMusic() {
   // access your keys information
   var spotify = new Spotify(keys.spotify);
   // Default search if no search entered
+  var searchAmt = 10;
   if (input == "") {
     input = "The Sign, Ace of Base";
+    // Only display first result
+    searchAmt = 1;
   }
   // GET info
   spotify.search({ type: 'track', query: input }, function (err, data) {
@@ -76,18 +64,14 @@ function giveMeMusic() {
     var info = data.tracks.items;
    
     // Record info for 10 results
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < searchAmt; i++) {
       console.log('\n' + parseInt(i + 1));
-      var album = info[i].album.name;
-
-      var artist = info[i].artists[0].name;
-      result = '\n' + "Song name: " + info[i].name + '\n' + "Artist: " + artist + '\n' + "Album: " + album + '\n' + "Link: " + info[i].preview_url;
+      
+      result = '\n' + "Song name: " + info[i].name + '\n' + "Artist: " + info[i].artists[0].name + '\n' + "Album: " + info[i].album.name + '\n' + "Link: " + info[i].preview_url;
       console.log(result);
       console.log("------------------");
       appendText(result);
     }
-
-
   });
 }
 // Bands-in-Town Function
@@ -101,7 +85,6 @@ function findConcert() {
       console.log("\nUpcoming shows for " + input);
       var info = response.data;
       
-
       // loop through first 10 shows
       for (var i = 0; i < 10; i++) {
         console.log('\n' + parseInt(i + 1));
@@ -134,6 +117,8 @@ function entertainMe() {
   );
 }
 // Determines which function is called based on input
+function mainSwitch(){
+
 switch (action) {
   case "spotify-this-song":
     giveMeMusic();
@@ -148,5 +133,8 @@ switch (action) {
     readRandom();
     break;
   default:
-  // code block
+  console.log("I don't know what you want from me!");
 }
+}
+
+mainSwitch();
